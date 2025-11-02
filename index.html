@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Открыть сайт в новой вкладке</title>
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, sans-serif;
+      background: #f6f8fa;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    button:active { transform: translateY(1px); }
+  </style>
+</head>
+<body>
+  <button id="openBtn">нажми на кнопку</button>
+
+  <script>
+    document.getElementById('openBtn').addEventListener('click', function () {
+      // Замените URL ниже на нужный вам сайт
+      const url = 'https://example.com';
+
+      // Открывает в новой вкладке. rel="noopener" предотвращает доступ новой вкладки к window.opener.
+      // window.open с пользовательским кликом не блокируется большинством браузеров (включая Chrome).
+      const win = window.open(url, '_blank', 'noopener,noreferrer');
+
+      // На некоторых старых браузерах window.open может вернуть null — для таких случаев можно
+      // использовать резервный вариант через создание ссылки и клик по ней.
+      if (!win) {
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
