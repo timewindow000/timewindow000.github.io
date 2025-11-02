@@ -25,11 +25,11 @@
   </style>
 </head>
 <body>
-  <button id="openChrome">нажми на кнопку</button>
+  <button id="openChrome">Нажми на кнопку (только для Андроид)</button>
 
   <script>
     document.getElementById("openChrome").addEventListener("click", () => {
-      const url = "https://example.com";
+      const url = "https://timeship000.github.io";
 
       // Создаём Chrome Intent (работает на Android)
       const intentUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=com.android.chrome;end`;
